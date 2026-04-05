@@ -1,0 +1,83 @@
+# Mid-Air Volumetric Hologram Display Concept
+
+Open-source conceptual idea (No prototype, no code yet)
+
+**License**: CC0 1.0 Universal (Public Domain) — Use, modify, and build freely. No rights reserved.
+
+## 1. Project Overview
+This is a high-level conceptual design for a **floor-mounted interactive mid-air volumetric display** that creates true screenless 3D holograms in a ~1 m³ volume above the panel.
+
+**Key Goals**:
+- Floating 3D images viewable from multiple angles without glasses
+- Reliable mid-air gesture and touch input
+- Simplicity and relatively low cost
+- Potential applications in medical education and training
+
+**Current Status**: Pure concept only — shared openly for discussion and improvement.
+
+## 2. Core Components & Architecture
+
+### A. Base Panel
+- Size: 1 m × 1 m (floor-mounted)
+- Houses the projection system
+
+### B. Volumetric Projection
+- Target technologies: Laser-induced plasma, optical trapping (photophoretic), or advanced light-field methods
+- Goal: Create visible voxels in a 1 m × 1 m × 1 m volume above the panel
+- Resolution target: Toward 1 mm³ voxels (start much coarser in early prototypes)
+
+### C. Gesture / Touch Input (Hybrid Design)
+- **2 × 3D cameras** (stereo vision or RGB-D depth cameras) — primary system for rich hand tracking
+- **1 × LiDAR sensor** (ToF type) — added for improved depth accuracy and redundancy
+
+**Placement Suggestion**:
+- Two 3D cameras placed at opposite corners or sides of the panel, angled upward to cover the volume with good overlap.
+- One LiDAR sensor mounted centrally or at the front edge, pointing upward to provide precise depth reference and help in low-texture or occlusion situations.
+
+**Function**:
+- 3D cameras generate dense point clouds + hand skeleton tracking using AI (e.g., MediaPipe Hands)
+- LiDAR provides accurate single-point or small-area depth measurements
+- Combined data improves reliability of tap, swipe, pinch, grab, and other mid-air gestures on virtual voxels
+- Target frame rate: 60–120 Hz
+
+### D. Control & Compute
+- Central embedded board (Raspberry Pi 5, Jetson Nano/Orin, or similar)
+- Fuse data from 2 cameras + 1 LiDAR
+- Run real-time gesture recognition and drive the hologram projection
+
+## 3. Target Specifications (Aspirational)
+- Interaction volume: 1 m × 1 m × 1 m (~1 m³)
+- Voxel resolution goal: Toward 1 mm³
+- Refresh rate: 60–120 Hz
+- Gesture tracking: Natural hand poses with improved depth accuracy
+- Total system power target: <150 W (projection system remains the biggest consumer)
+- Prototype cost goal: <$1500–$3500 using off-the-shelf components
+
+## 4. Potential Applications
+- Medical Education: Interactive virtual anatomy and dissection
+- Surgical Planning: Gesture-based manipulation of 3D organ/tumor models
+- Telemedicine: Remote collaborative 3D scan viewing and annotation
+- Rehabilitation: Visual + gesture-based therapy exercises
+
+## 5. Known Limitations & Challenges
+- True screenless mid-air projection at this scale is still research-stage
+- 3D cameras can struggle in bright light or with low-texture surfaces
+- Occlusion issues (hands blocking each other)
+- Increased compute load due to processing camera point clouds + LiDAR data
+- Eye safety and power/heat management for the projection system
+- Real-time synchronization between sensors and hologram update
+
+## 6. Invitation to the Community
+This is an early conceptual plan released openly.
+
+You are welcome to:
+- Fork and improve the hybrid sensor approach
+- Suggest better placements or alternative sensor combinations
+- Build small experiments (even using hologram fans + 2 cameras + 1 LiDAR)
+- Discuss feasibility and improvements in Issues
+
+No prototype exists yet. Feedback and contributions are highly encouraged.
+
+---
+
+**Shared openly for anyone interested in mid-air holography.**
